@@ -10,12 +10,25 @@ public class Main {
     /**
      * @param args the command line arguments
      */
+    private static ConvertToBinary binary = new ConvertToBinary();
+    
     public static void main(String[] args) {
-        CreateKey key = new CreateKey();
-        String[] keyCode = key.key("TEKNIKINFORMATIK");
-        for (int i = 0; i < keyCode.length; i++) {
-            System.out.println( "key " + (i+1) + " : " + keyCode[i] + " | " + Integer.parseInt(keyCode[i], 2));
-        }
+        
+        String katakunci = "TEKNIKINFORMATIK";
+        String katakata  = "FAKULTAS";
+        
+        CreateKey getKey = new CreateKey();
+        Encript encript = new Encript();
+        
+        String[][] keyCode = getKey.key(katakunci);
+        String enc = encript.getEncript(katakata, keyCode);
+        
+        System.out.println("============[ hasil encript ]============");
+        System.out.println(enc);
+        System.out.println("===================[  ]==================");
+        
+        String[] arbin = binary.getBinary(enc);
+        for(String s : arbin) System.out.println(s);
     }
     
 }

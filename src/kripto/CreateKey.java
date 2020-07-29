@@ -1,44 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package kripto;
 
-import java.util.Arrays;
+
+
 
 public class CreateKey {
-    String[] key(String str){
-        String[] arrayBinary = new String[str.length()];
-        int intStr = 0;
-        for (int i = 0; i < str.length(); i++) {
-            intStr = (int) str.charAt(i);
-            String binary = Integer.toBinaryString(intStr);
-            arrayBinary[i] = ( binary.length() < 8 ) ? convertTo8Bit(binary) : binary;
-//            System.out.println("Karakter " + (char) intStr + " memiliki kode ASCII " + intStr);
-        }
-        
-        String code = String.join("", arrayBinary);
-//        System.out.println("asli :" + code);
-        for (int i = 0; i < 5; i++) {
-            code = rotasi(code);
-//            System.out.println("putaran "+(i+1)+" :" + code);
-        }
-        
-        String key = code.substring(64, 128);
-        String[] arrKey = key.split("(?<=\\G................)");
-//        System.out.println(java.util.Arrays.toString(arrKey));
-        
-        return arrKey;
-    }
     
-    String convertTo8Bit(String str){
-        String hasil = str;
-        String[] tambah = {"0", "00", "000", "0000", "00000", "000000", "0000000"};
-        int kurang = 8 - str.length()-1;
-        hasil = tambah[kurang] + hasil;
+    private ConvertToBinary binary = new ConvertToBinary();
+    
+    public String[][] key(String str){
+
+        String[] arrayBinary = binary.getBinary(str);
         
-        return hasil;
+        String code = String.join("", arrayBinary); // hasil putaran pertama
+        
+        String[] keyCode = new String[48];
+        int ke = 0;
+        
+        for (int i = 0; i < 6; i++) {
+            String[] arrKey = new String[8];
+            if (i == 0) {
+                arrKey = code.split("(?<=\\G................)");
+            }else {
+                code = rotasi(code);
+                arrKey = code.split("(?<=\\G................)");
+            }
+            
+            for(String arr : arrKey) {
+                keyCode[ke] = arr;
+                ke++;
+            }
+        }
+        
+        String[][] newKeyCode = new String[8][6];
+        
+        int k = 0;
+        int p = 0;
+        for (int i = 0; i < keyCode.length; i++) {
+            newKeyCode[p][k] = keyCode[i];
+//            System.out.println( " putaran " + p + " kunci " + k + " : " + keyCode[i] + " | " + Integer.parseInt(keyCode[i], 2));
+            k++;
+            if (k == 6) { k = 0; p++; }
+        }
+        
+        return newKeyCode;
     }
 
     private String rotasi(String code) {
