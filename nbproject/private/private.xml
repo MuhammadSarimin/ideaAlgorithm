@@ -4,9 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/4790/Documents/NetBeansProjects/ideaAlgorithm/src/kripto/CreateKey.java</file>
-            <file>file:/C:/Users/4790/Documents/NetBeansProjects/ideaAlgorithm/src/kripto/ConvertToBinary.java</file>
             <file>file:/C:/Users/4790/Documents/NetBeansProjects/ideaAlgorithm/src/kripto/Main.java</file>
-            <file>file:/C:/Users/4790/Documents/NetBeansProjects/ideaAlgorithm/src/kripto/Encript.java</file>
+            <file>file:/C:/Users/4790/Documents/NetBeansProjects/ideaAlgorithm/src/kripto/IDEA.java</file>
+            <file>file:/C:/Users/4790/Documents/NetBeansProjects/ideaAlgorithm/src/kripto/CreateBinary.java</file>
         </group>
     </open-files>
 </project-private>
